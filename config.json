@@ -3,7 +3,15 @@
 	"owner": 0,
 	"token": "NjAyMzI4Mzg1MzEzNzAxODk4.XTPQLQ.VVyby3Mrs7WYHQJxupcgU4DUuDg",
 	"modules": {
-		"auto-find": false, 
+		"auto-find": true, 
 		"list": []
+	},
+	"database": {
+		"host": "remotemysql.com",
+		"port": 3306,
+		"user": "7gYcQBDUfZ",
+		"password": "vvAJHqWWcT",
+		"database_name": "7gYcQBDUfZ",
+		"table": "users"
 	}
 }
