@@ -12,9 +12,7 @@ class Commands(Cog):
 
 	@command(name="ping", aliases=["online"])
 	async def online(self, ctx):
-		print("Recieved on ping")
 		await ctx.send(f"🏓 Pong  `{int(round(self.bot.latency*1000, 2))} ms`")
-		print("Ping Done")
 
 	@command(name='level')
 	async def level(self, ctx):
