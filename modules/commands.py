@@ -23,7 +23,7 @@ class Commands(Cog):
 		embed.set_thumbnail(url=ctx.message.author.avatar_url)
 		embed.add_field(name="Nível", value=level)
 		embed.add_field(name="XP", value=xp)
-		embed.add_field(name="XP para o Próximo nível ", value=xp-(level * 100))
+		embed.add_field(name="XP para o Próximo nível ", value=(level * 100)-xp)
 		await ctx.send(embed=embed)
 	
 def setup(bot):
