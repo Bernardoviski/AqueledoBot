@@ -15,7 +15,7 @@ class Commands(Cog):
 	async def online(self, ctx):
 		await ctx.send(f"🏓 Pong  `{int(round(self.bot.latency*1000, 2))} ms`")
 
-	@command(name='level')
+	@command(name='level', aliases=["levels", "xp", "nivel"])
 	async def level(self, ctx):
 		data = Database(ctx.message.author.id).get()
 		level, xp = (data["level"], data["xp"])
@@ -24,7 +24,7 @@ class Commands(Cog):
 		embed.add_field(name="Nível", value=level)
 		embed.add_field(name="XP", value=xp)
 		embed.add_field(name="XP para o Próximo nível ", value=xp-(level * 100))
-
-
+		await ctx.send(embed=embed)
+	
 def setup(bot):
 	bot.add_cog(Commands(bot))
