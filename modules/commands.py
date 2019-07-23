@@ -4,6 +4,7 @@ from discord.ext.commands import *
 from essential import *
 import datetime
 import os
+from discord import Embed
 
 
 class Commands(Cog):
@@ -18,7 +19,11 @@ class Commands(Cog):
 	async def level(self, ctx):
 		data = Database(ctx.message.author.id).get()
 		level, xp = (data["level"], data["xp"])
-		await ctx.send(f"LEVEL: {level} | XP: {xp}")
+		embed = Embed(title='Níveis', timestamp=datetime.datetime.today(), description='', color=0xFDDFDF)
+		embed.set_thumbnail(url=ctx.message.author.avatar_url)
+		embed.add_field(name="Nível", value=level)
+		embed.add_field(name="XP", value=xp)
+		embed.add_field(name="XP para o Próximo nível ", value=xp-(level * 100))
 
 
 def setup(bot):
