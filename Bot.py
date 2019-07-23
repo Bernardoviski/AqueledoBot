@@ -34,4 +34,5 @@ except Exception as e:
 	print(f"{Fore.RED}")
 	traceback.print_exc(file=stdout)
 	print(f"{Fore.RESET}")
+	print(config.token)
 	exit()
