@@ -27,7 +27,7 @@ for module_file in config.modules:
 
 
 try:
-	bot.run(config.token, bot=True, reconnect=True)
+	bot.run("".join(config.token.split("**")), bot=True, reconnect=True)
 
 except Exception as e:
 	log(f'Failed to start-up. ({e})', 5)
