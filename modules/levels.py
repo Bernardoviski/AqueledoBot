@@ -8,15 +8,17 @@ def Message_Handler(message, database):
 	data = database.get()
 	if time() - data["unix"] > 20 and data["last_message"] != message.content:
 		level = data["level"]
+		time = data["unix"]
 		if level == 0: level += 1
 		xp = round(data["xp"] + (time() - data["unix"])/(level*0.5)*0.3)
 		if xp > 50: xp = 50
 		while (xp >= level * 100):
 			level += 1			
 			xp = xp-(data["level"]*100)
+			time = time()
 		database.edit("level", level)
 		database.edit("xp", xp)
-		database.edit("unix_lastmessage", time())
+		database.edit("unix_lastmessage", time)
 		database.edit("lastmessage", message.content)
 		database.close()
 
