@@ -7,18 +7,26 @@ import threading
 def Message_Handler(message, database):
 	data = database.get()
 	if time() - data["unix"] > 20 and data["last_message"] != message.content:
+	
+		xp = data["xp"]
 		level = data["level"]
-		time_data = data["unix"]
-		if level == 0: level += 1
-		xp = round(data["xp"] + (time() - data["unix"])/(level*0.5)*0.3)
-		if xp > 50: xp = 50
-		while (xp >= level * 100):
-			level += 1			
-			xp = xp-(data["level"]*100)
-			time_data = time()
-		database.edit("level", level)
-		database.edit("xp", xp)
-		database.edit("unix_lastmessage", time_data)
+		last_message_time = data["unix"]
+		xp_to_add = round((time()-last_message_time)/level)
+		print(xp_to_add)
+		print(time(), last_message_time)
+		if xp_to_add > 49:
+			xp_to_add = 49
+		
+		total_xp = xp + xp_to_add
+		
+		if total_xp > level*100:
+			total_xp -= level*100
+			level += 1
+
+		if level != data["level"]:
+			database.edit("level", level)
+		database.edit("unix_lastmessage", time())
+		database.edit("xp", total_xp)	
 		database.edit("lastmessage", message.content)
 		database.close()
 
