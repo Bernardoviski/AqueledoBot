@@ -8,7 +8,8 @@ def Message_Handler(message, database):
 	data = database.get()
 	if time() - data["unix"] > 20 and data["last_message"] != message.content:
 		level = data["level"]
-		xp = round(data["xp"] + (time() - data["unix"])/(data["level"]*0.5)*0.3)
+		if level == 0: level += 1
+		xp = round(data["xp"] + (time() - data["unix"])/(level*0.5)*0.3)
 		if xp > 50: xp = 50
 		while (xp >= level * 100):
 			level += 1			
