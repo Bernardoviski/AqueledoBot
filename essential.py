@@ -1,5 +1,5 @@
 from os import listdir
-from json import load
+from json import load, dumps
 from colorama import Fore, Back, Style
 from colorama import init as init_colorama
 from os import _exit
@@ -63,7 +63,6 @@ class Database(object):
 			cursor = self.connection.cursor()
 			cursor.execute(f"UPDATE `{self.table}` SET `{col}` = '{value}' WHERE `user` = '{self.user}'")
 			self.connection.commit()
-			print("Sent - FROM ESSENTIAL -")
 
 		except Exception as error:
 			log(f"Failed to edit the database.\n({error})", 5)
@@ -91,6 +90,33 @@ class Database(object):
 		self.connection.close()
 		self.closed = True
 	
+
+class LevelManager(object):
+	def __init__(self, level):
+		self.level = level
+	def setrole(self, role):
+		file_contents = load(open("levels.json", 'r'))
+		print(file_contents)
+		file_contents[f'{self.level}'] = {"role": role}
+		with open('levels.json', 'w') as f:
+			f.write(dumps(file_contents))
+			f.close()
+	def removerole(self):
+		file_contents = load(open("levels.json", 'r'))
+		if f"{self.level}" in file_contents:
+			file_contents.pop(f"{self.level}")
+			with open('levels.json', 'w') as f:
+				f.write(dumps(file_contents))
+				f.close()
+	def getrole(self):
+		file_contents = load(open("levels.json", 'r'))
+		if f"{self.level}" in file_contents:
+			return file_contents[f"{self.level}"]["role"]
+		else:
+			return None
+	def getall(self):
+		file_contents = load(open("levels.json", 'r'))
+		return file_contents
 class Config(object):
 	def __init__(self, config_file: str = 'config.json'):
 		config_contents = load(open(config_file, 'r'))

@@ -1,6 +1,6 @@
 {
 	"prefix": "!",
-	"owner": 1,
+	"owner": 536576041645375490,
 	"token": "NjAyMzI4Mzg1MzEzNzAxODk4.XTdSng**.cGE_Ze8KlrFdsuWZ1mCQzSdCks4",
 	"modules": {
 		"auto-find": true, 
@@ -12,6 +12,6 @@
 		"user": "7gYcQBDUfZ",
 		"password": "vvAJHqWWcT",
 		"database_name": "7gYcQBDUfZ",
-		"table": "users"
+		"table": "bot"
 	}
 }
