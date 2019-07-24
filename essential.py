@@ -43,8 +43,8 @@ class Database(object):
 			return {"unix": row[0], "last_message": row[1], "level": row[2], "xp": row[3]}
 
 		except IndexError:
-			print(f"INSERT INTO `users` (`unix_lastmessage`, `lastmessage`, `level`, `xp`, `user`) VALUES ('{time()}', '', '1', '0', '{self.user}')")
-			cursor.execute(f"INSERT INTO `users` (`unix_lastmessage`, `lastmessage`, `level`, `xp`, `user`) VALUES ('{time()}', '', '1', '0', '{self.user}')")
+			print(f"INSERT INTO `bot` (`unix_lastmessage`, `lastmessage`, `level`, `xp`, `user`) VALUES ('{time()}', '', '1', '0', '{self.user}')")
+			cursor.execute(f"INSERT INTO `bot` (`unix_lastmessage`, `lastmessage`, `level`, `xp`, `user`) VALUES ('{time()}', '', '1', '0', '{self.user}')")
 			self.connection.commit()
 			return {"unix": time(), "last_message": '', "level": 1, "xp": 0}
 
@@ -77,7 +77,7 @@ class Database(object):
 				exit()
 
 			cursor = self.connection.cursor()
-			cursor.execute(f"INSERT INTO `users` (`unix_lastmessage`, `lastmessage`, `level`, `xp`, `user`) VALUES ('{time()}', '', '1', '0', '{self.user}')")
+			cursor.execute(f"INSERT INTO `bot` (`unix_lastmessage`, `lastmessage`, `level`, `xp`, `user`) VALUES ('{time()}', '', '1', '0', '{self.user}')")
 			self.connection.commit()
 
 		except Exception as error:
