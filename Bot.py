@@ -4,6 +4,7 @@ from sys import stdout
 import traceback
 from discord.ext import commands
 import discord
+import asyncio
 import threading
 
 
@@ -28,8 +29,6 @@ for module_file in config.modules:
 
 try:
 	bot.run("".join(config.token.split("**")), bot=True, reconnect=True)
-	activity = discord.Activity(name="xp por ai", type=discord.ActivityType["playing"])
-	await bot.change_presence(activity=activity)
 except Exception as e:
 	log(f'Failed to start-up. ({e})', 5)
 	print(f"{Fore.RED}")
